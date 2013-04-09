@@ -1,0 +1,5 @@
+libblinkm (0.1-1) lucid; urgency=low
+
+  * Initial commit with rudimentary project structure
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Tue, 09 Apr 2013 13:17:00 +0100
