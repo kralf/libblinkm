@@ -21,8 +21,7 @@
 #ifndef BLINKM_SCRIPTLINE_H
 #define BLINKM_SCRIPTLINE_H
 
-/** \file scriptline.h
-  * \brief BlinkM script line
+/** \brief BlinkM script line
   */
 
 #include "base/object.h"

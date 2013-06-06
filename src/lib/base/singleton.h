@@ -21,8 +21,7 @@
 #ifndef BLINKM_SINGLETON_H
 #define BLINKM_SINGLETON_H
 
-/** \file singleton.h
-  * \brief Templated BlinkM singleton
+/** \brief Templated BlinkM singleton
   */
 
 #include "base/exception.h"

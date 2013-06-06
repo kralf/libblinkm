@@ -22,6 +22,7 @@
 #include <limits>
 
 #include "base/bits.h"
+#include "base/serializable.h"
 
 #include "color/rgb.h"
 
@@ -196,11 +197,19 @@ BlinkM::Color::Hsv BlinkM::Color::Hsv::interpolate(const Hsv& to, double value)
 }
 
 void BlinkM::Color::Hsv::read(std::istream& stream) {
+  Serializable<unsigned char> hue, saturation, value;
+
   stream >> hue >> saturation >> value;
+
+  this->hue = hue;
+  this->saturation = saturation;
+  this->value = value;
 }
 
 void BlinkM::Color::Hsv::write(std::ostream& stream) const {
-  stream << hue << " " << saturation << " " << value;
+  stream << Serializable<unsigned char>(hue) << " " <<
+    Serializable<unsigned char>(saturation) << " " <<
+    Serializable<unsigned char>(value);
 }
 
 std::istream& operator>>(std::istream& stream, BlinkM::Color::Hsv& hsv) {

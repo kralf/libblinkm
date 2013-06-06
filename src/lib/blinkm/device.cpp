@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "base/singleton.h"
+#include "base/serializable.h"
 
 #include "device.h"
 
@@ -97,7 +98,8 @@ BlinkM::Device::FirmwareVersion& BlinkM::Device::FirmwareVersion::operator=(
 }
 
 void BlinkM::Device::FirmwareVersion::write(std::ostream& stream) const {
-  stream << major << "." << minor;
+  stream << Serializable<unsigned char>(major) << "." <<
+    Serializable<unsigned char>(minor);
 }
 
 BlinkM::Device& BlinkM::Device::operator=(const BlinkM::Device& src) {

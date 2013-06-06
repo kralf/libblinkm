@@ -21,8 +21,7 @@
 #ifndef BLINKM_WRITESCRIPTLINE_H
 #define BLINKM_WRITESCRIPTLINE_H
 
-/** \file writescriptline.h
-  * \brief BlinkM write script line request
+/** \brief BlinkM write script line request
   */
 
 #include "blinkm/scriptline.h"

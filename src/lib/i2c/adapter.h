@@ -21,8 +21,7 @@
 #ifndef BLINKM_I2C_ADAPTER_H
 #define BLINKM_I2C_ADAPTER_H
 
-/** \file adapter.h
-  * \brief BlinkM I2C bus adapter
+/** \brief BlinkM I2C bus adapter
   */
 
 #include <string>
@@ -69,7 +68,7 @@ namespace BlinkM {
       public:
         /** Construct an I2C adapter send error
           */
-        SendError(const std::string& address);
+        SendError(const std::string& address, int error);
       };
 
       class ReceiveTimeout :
@@ -85,7 +84,7 @@ namespace BlinkM {
       public:
         /** Construct an I2C adapter receive error
           */
-        ReceiveError(const std::string& address);
+        ReceiveError(const std::string& address, int error);
       };
 
       /** Construct a BlinkM I2C adapter

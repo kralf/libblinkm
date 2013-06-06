@@ -21,8 +21,7 @@
 #ifndef BLINKM_POINTER_H
 #define BLINKM_POINTER_H
 
-/** \file pointer.h
-  * \brief Templated BlinkM pointer
+/** \brief Templated BlinkM pointer
   */
 
 #include "base/exception.h"

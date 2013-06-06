@@ -24,7 +24,7 @@
 /* Constructors and Destructor                                               */
 /*****************************************************************************/
 
-  BlinkM::GetColor::GetColor() :
+BlinkM::GetColor::GetColor() :
   Request('g', 0, 3) {
 }
 

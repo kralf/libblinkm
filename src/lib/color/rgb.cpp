@@ -20,6 +20,8 @@
 
 #include <cmath>
 
+#include "base/serializable.h"
+
 #include "color/hsv.h"
 
 #include "rgb.h"
@@ -192,11 +194,19 @@ BlinkM::Color::Rgb BlinkM::Color::Rgb::interpolate(const Rgb& to, double value)
 }
 
 void BlinkM::Color::Rgb::read(std::istream& stream) {
+  Serializable<unsigned char> red, green, blue;
+
   stream >> red >> green >> blue;
+
+  this->red = red;
+  this->green = green;
+  this->blue = blue;
 }
 
 void BlinkM::Color::Rgb::write(std::ostream& stream) const {
-  stream << red << " " << green << " " << blue;
+  stream << Serializable<unsigned char>(red) << " " <<
+    Serializable<unsigned char>(green) << " " <<
+    Serializable<unsigned char>(blue);
 }
 
 std::istream& operator>>(std::istream& stream, BlinkM::Color::Rgb& rgb) {

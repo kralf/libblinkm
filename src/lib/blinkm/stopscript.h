@@ -21,8 +21,7 @@
 #ifndef BLINKM_STOPSCRIPT_H
 #define BLINKM_STOPSCRIPT_H
 
-/** \file stopscript.h
-  * \brief BlinkM stop script request
+/** \brief BlinkM stop script request
   */
 
 #include "request.h"

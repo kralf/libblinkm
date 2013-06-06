@@ -21,8 +21,7 @@
 #ifndef BLINKM_COMMAND_APPLICATION_H
 #define BLINKM_COMMAND_APPLICATION_H
 
-/** \file application.h
-  * \brief BlinkM commandline application
+/** \brief BlinkM commandline application
   */
 
 #include <vector>

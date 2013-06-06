@@ -21,8 +21,7 @@
 #ifndef BLINKM_PLAYSCRIPT_H
 #define BLINKM_PLAYSCRIPT_H
 
-/** \file playscript.h
-  * \brief BlinkM play script request
+/** \brief BlinkM play script request
   */
 
 #include "request.h"

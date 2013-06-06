@@ -21,8 +21,7 @@
 #ifndef BLINKM_GETADDRESS_H
 #define BLINKM_GETADDRESS_H
 
-/** \file getaddress.h
-  * \brief BlinkM get address request
+/** \brief BlinkM get address request
   */
 
 #include "request.h"

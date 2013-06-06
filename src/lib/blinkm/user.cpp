@@ -18,31 +18,39 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef BLINKM_SETFADESPEED_H
-#define BLINKM_SETFADESPEED_H
+#include "base/serializable.h"
 
-/** \brief BlinkM set fade speed request
-  */
+#include "user.h"
 
-#include "request.h"
+/*****************************************************************************/
+/* Constructors and Destructor                                               */
+/*****************************************************************************/
 
-namespace BlinkM {
-  class SetFadeSpeed :
-    public Request {
-  public:
-    /** Construct a BlinkM set fade speed request
-      */
-    SetFadeSpeed(unsigned char speed = 1);
+BlinkM::User::User(unsigned char command, size_t numArguments, size_t
+    numReturnValues) :
+  Request(command, numArguments, numReturnValues) {
+}
 
-    /** Access the request's speed
-      */
-    unsigned char getSpeed() const;
-    void setSpeed(unsigned char speed);
+/*****************************************************************************/
+/* Methods                                                                   */
+/*****************************************************************************/
 
-    SetFadeSpeed* clone() const;
+BlinkM::User* BlinkM::User::clone() const {
+  return new User(*this);
+}
 
-    void read(std::istream& stream);
-  };
-};
+void BlinkM::User::read(std::istream& stream) {
+  Serializable<unsigned char> argument;
 
-#endif
+  stream >> outputData[0];
+  for (int i = 1; i < outputData.size(); ++i) {
+    stream >> argument;
+    outputData[i] = argument;
+  }
+}
+
+void BlinkM::User::write(std::ostream& stream) const {
+  stream << outputData[0];
+  for (int i = 1; i < outputData.size(); ++i)
+    stream << " " << (size_t)outputData[i];
+}

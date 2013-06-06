@@ -21,8 +21,7 @@
 #ifndef BLINKM_FADETORANDOMCOLOR_H
 #define BLINKM_FADETORANDOMCOLOR_H
 
-/** \file fadetorandomcolor.h
-  * \brief BlinkM fade to random color request
+/** \brief BlinkM fade to random color request
   */
 
 #include "color/rgb.h"

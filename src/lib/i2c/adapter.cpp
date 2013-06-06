@@ -20,8 +20,11 @@
 
 #include <linux/i2c-dev.h>
 
+#include <sys/ioctl.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <string.h>
 
 #include "adapter.h"
 
@@ -42,22 +45,24 @@ BlinkM::I2c::Adapter::SetupError::SetupError(const std::string&
   Exception("Error setting I2C adapter attributes: %s", address.c_str()) {
 }
 
-BlinkM::I2c::Adapter::SendError::SendError(const std::string& address) :
-  Exception("Send failed on I2C adapter: %s", address.c_str()) {
+BlinkM::I2c::Adapter::SendError::SendError(const std::string& address,
+    int error) :
+  Exception("Send failed on I2C adapter %s: %s", address.c_str(),
+    strerror(error)) {
 }
 
 BlinkM::I2c::Adapter::ReceiveTimeout::ReceiveTimeout(const std::string&
     address) :
-  Exception("Receive timeout on I2C adapter: %s", address.c_str()) {
+  Exception("Receive timeout on I2C adapter %s", address.c_str()) {
 }
 
 BlinkM::I2c::Adapter::ReceiveError::ReceiveError(const std::string&
-    address) :
-  Exception("Receive failed on I2C adapter: %s", address.c_str()) {
+    address, int error) :
+  Exception("Receive failed on I2C adapter %s: %s", address.c_str(),
+    strerror(error)) {
 }
 
-BlinkM::I2c::Adapter::Adapter(const std::string& address,
-    double timeout) :
+BlinkM::I2c::Adapter::Adapter(const std::string& address, double timeout) :
   address(address),
   timeout(timeout),
   handle(0),
@@ -162,11 +167,11 @@ void BlinkM::I2c::Adapter::send(const std::vector<unsigned char>& data) {
     int i = 0;
 
     while (i < data.size()) {
-      size_t result;
+      ssize_t result;
       while ((result = ::write(handle, &data[i], data.size()-i)) == 0);
 
       if ((result < 0) && (errno != EWOULDBLOCK))
-        throw SendError(address);
+        throw SendError(address, errno);
       else if (result > 0)
         i += result;
     }
@@ -193,13 +198,13 @@ void BlinkM::I2c::Adapter::receive(std::vector<unsigned char>& data) {
       if (error == 0)
         throw ReceiveTimeout(address);
       else if (error < 0)
-        throw ReceiveError(address);
+        throw ReceiveError(address, errno);
 
-      size_t result;
+      ssize_t result;
       result = ::read(handle, &data[i], data.size()-i);
 
       if ((result < 0) && (result != EWOULDBLOCK))
-        throw ReceiveError(address);
+        throw ReceiveError(address, errno);
       else if (result > 0)
         i += result;
     }
@@ -209,7 +214,7 @@ void BlinkM::I2c::Adapter::receive(std::vector<unsigned char>& data) {
 }
 
 void BlinkM::I2c::Adapter::setup(unsigned char slave) {
-  if (ioctl(handle, I2C_SLAVE, slave) >= 0)
+  if (ioctl(handle, I2C_SLAVE_FORCE, slave) >= 0)
     this->slave = slave;
   else
     throw SetupError(address);

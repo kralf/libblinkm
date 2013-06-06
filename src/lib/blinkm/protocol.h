@@ -21,8 +21,7 @@
 #ifndef BLINKM_PROTOCOL_H
 #define BLINKM_PROTOCOL_H
 
-/** \file protocol.h
-  * \brief BlinkM communication protocol
+/** \brief BlinkM communication protocol
   */
 
 #include <iostream>

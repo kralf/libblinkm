@@ -21,8 +21,7 @@
 #ifndef BLINKM_SETADDRESS_H
 #define BLINKM_SETADDRESS_H
 
-/** \file setaddress.h
-  * \brief BlinkM set address request
+/** \brief BlinkM set address request
   */
 
 #include "request.h"

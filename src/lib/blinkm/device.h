@@ -21,8 +21,7 @@
 #ifndef BLINKM_DEVICE_H
 #define BLINKM_DEVICE_H
 
-/** \file device.h
-  * \brief BlinkM device
+/** \brief BlinkM device
   */
 
 #include <iostream>

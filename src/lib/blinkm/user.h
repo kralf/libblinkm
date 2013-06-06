@@ -18,30 +18,29 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef BLINKM_SETFADESPEED_H
-#define BLINKM_SETFADESPEED_H
+#ifndef BLINKM_USER_H
+#define BLINKM_USER_H
 
-/** \brief BlinkM set fade speed request
+/** \brief BlinkM user-defined request
   */
+
+#include "color/rgb.h"
 
 #include "request.h"
 
 namespace BlinkM {
-  class SetFadeSpeed :
+  class User :
     public Request {
   public:
-    /** Construct a BlinkM set fade speed request
+    /** Construct a BlinkM user request
       */
-    SetFadeSpeed(unsigned char speed = 1);
+    User(unsigned char command = 0, size_t numArguments = 4,
+      size_t numReturnValues = 0);
 
-    /** Access the request's speed
-      */
-    unsigned char getSpeed() const;
-    void setSpeed(unsigned char speed);
-
-    SetFadeSpeed* clone() const;
+    User* clone() const;
 
     void read(std::istream& stream);
+    void write(std::ostream& stream) const;
   };
 };
 

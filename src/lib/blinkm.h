@@ -21,8 +21,7 @@
 #ifndef BLINKM_H
 #define BLINKM_H
 
-/** \file blinkm.h
-  * \brief BlinkM standard includes
+/** \brief BlinkM standard includes
   */
 
 #include "device.h"

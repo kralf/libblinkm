@@ -21,8 +21,7 @@
 #ifndef BLINKM_SERIALIZABLE_H
 #define BLINKM_SERIALIZABLE_H
 
-/** \file serializable.h
-  * \brief BlinkM serializable
+/** \brief BlinkM serializable
   */
 
 #include <iostream>

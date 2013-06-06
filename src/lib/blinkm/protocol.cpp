@@ -33,6 +33,8 @@
 #include "writescriptline.h"
 #include "setfadespeed.h"
 #include "settimeadjust.h"
+#include "setstartupparameters.h"
+#include "user.h"
 
 /*****************************************************************************/
 /* Constructors and Destructor                                               */
@@ -56,6 +58,8 @@ BlinkM::Protocol::Protocol() {
   requests["WriteScriptLine"] = new WriteScriptLine();
   requests["SetFadeSpeed"] = new SetFadeSpeed();
   requests["SetTimeAdjust"] = new SetTimeAdjust();
+  requests["SetStartupParameters"] = new SetStartupParameters();
+  requests["User"] = new User();
 }
 
 BlinkM::Protocol::Protocol(const Protocol& src) {
@@ -94,17 +98,13 @@ BlinkM::Protocol& BlinkM::Protocol::operator=(const Protocol& src) {
 
 BlinkM::Request* BlinkM::Protocol::createRequest(const std::string&
     typeName) const {
-  if (typeName != "User") {
-    std::map<std::string, Pointer<BlinkM::Request> >::const_iterator
-      it = requests.find(typeName);
+  std::map<std::string, Pointer<BlinkM::Request> >::const_iterator
+    it = requests.find(typeName);
 
-    if (it != requests.end())
-      return it->second->clone();
-    else
-      throw RequestError(typeName);
-  }
+  if (it != requests.end())
+    return it->second->clone();
   else
-    return new Request(0, 4);
+    throw RequestError(typeName);
 }
 
 bool BlinkM::Protocol::hasRequest(const std::string& typeName) const {
@@ -112,7 +112,6 @@ bool BlinkM::Protocol::hasRequest(const std::string& typeName) const {
 }
 
 void BlinkM::Protocol::write(std::ostream& stream) const {
-  stream << "User";
   for (std::map<std::string, Pointer<Request> >::const_iterator
       it = requests.begin(); it != requests.end(); ++it)
     stream << std::endl << it->first;

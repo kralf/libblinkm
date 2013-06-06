@@ -21,8 +21,7 @@
 #ifndef BLINKM_MEMORY_H
 #define BLINKM_MEMORY_H
 
-/** \file memory.h
-  * \brief BlinkM memory management
+/** \brief BlinkM memory management
   */
 
 #include "exception.h"

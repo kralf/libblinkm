@@ -18,8 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "base/serializable.h"
-
 #include "request.h"
 
 /*****************************************************************************/
@@ -93,19 +91,9 @@ BlinkM::Request* BlinkM::Request::clone() const {
 }
 
 void BlinkM::Request::read(std::istream& stream) {
-  Serializable<unsigned char> argument;
-
-  stream >> outputData[0];
-  for (int i = 1; i < outputData.size(); ++i) {
-    stream >> argument;
-    outputData[i] = argument;
-  }
 }
 
 void BlinkM::Request::write(std::ostream& stream) const {
-  stream << outputData[0];
-  for (int i = 1; i < outputData.size(); ++i)
-    stream << " " << (size_t)outputData[i];
 }
 
 std::istream& operator>>(std::istream& stream, BlinkM::Request& request) {

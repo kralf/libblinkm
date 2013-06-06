@@ -24,7 +24,7 @@
 /* Constructors and Destructor                                               */
 /*****************************************************************************/
 
-  BlinkM::GetAddress::GetAddress() :
+BlinkM::GetAddress::GetAddress() :
   Request('a', 0, 1) {
 }
 

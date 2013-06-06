@@ -21,8 +21,7 @@
 #ifndef BLINKM_READSCRIPTLINE_H
 #define BLINKM_READSCRIPTLINE_H
 
-/** \file readscriptline.h
-  * \brief BlinkM read script line request
+/** \brief BlinkM read script line request
   */
 
 #include "blinkm/scriptline.h"

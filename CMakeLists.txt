@@ -40,14 +40,14 @@ remake_pack_deb(
 remake_distribute_deb(
   DISTRIBUTION lucid
   SECTION libs
-  UPLOAD ppa:kralf/naro
-  DEPENDS remake doxygen libi2c-dev
+  UPLOAD ppa:kralf/asl
+  DEPENDS remake libi2c-dev doxygen
   PASS CMAKE_BUILD_TYPE LIBPOLOLU_GIT_REVISION
 )
 remake_distribute_deb(
   DISTRIBUTION precise
   SECTION libs
-  UPLOAD ppa:kralf/naro
-  DEPENDS remake doxygen libi2c-dev
+  UPLOAD ppa:kralf/asl
+  DEPENDS remake libi2c-dev doxygen
   PASS CMAKE_BUILD_TYPE LIBBLINKM_GIT_REVISION
 )

@@ -21,8 +21,7 @@
 #ifndef BLINKM_COLOR_RGB_H
 #define BLINKM_COLOR_RGB_H
 
-/** \file rgb.h
-  * \brief BlinkM RGB color
+/** \brief BlinkM RGB color
   */
 
 #include <iostream>

@@ -21,8 +21,7 @@
 #ifndef BLINKM_GETFIRMWAREVERSION_H
 #define BLINKM_GETFIRMWAREVERSION_H
 
-/** \file getfirmwareversion.h
-  * \brief BlinkM get firmware version request
+/** \brief BlinkM get firmware version request
   */
 
 #include "request.h"

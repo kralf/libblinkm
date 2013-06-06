@@ -21,8 +21,7 @@
 #ifndef BLINKM_COLOR_HSV_H
 #define BLINKM_COLOR_HSV_H
 
-/** \file rgb.h
-  * \brief BlinkM HSV color
+/** \brief BlinkM HSV color
   */
 
 #include <iostream>

@@ -21,8 +21,7 @@
 #ifndef BLINKM_SETTIMEADJUST_H
 #define BLINKM_SETTIMEADJUST_H
 
-/** \file settimeadjust.h
-  * \brief BlinkM set time adjust request
+/** \brief BlinkM set time adjust request
   */
 
 #include "request.h"

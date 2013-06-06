@@ -21,8 +21,7 @@
 #ifndef BLINKM_OBJECT_H
 #define BLINKM_OBJECT_H
 
-/** \file object.h
-  * \brief BlinkM object
+/** \brief BlinkM object
   */
 
 #include "base/pointer.h"

@@ -21,8 +21,7 @@
 #ifndef BLINKM_I2C_REQUEST_H
 #define BLINKM_I2C_REQUEST_H
 
-/** \file request.h
-  * \brief BlinkM IC2 request
+/** \brief BlinkM IC2 request
   */
 
 #include <vector>

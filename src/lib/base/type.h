@@ -21,8 +21,7 @@
 #ifndef BLINKM_TYPE_H
 #define BLINKM_TYPE_H
 
-/** \file type.h
-  * \brief Templated BlinkM type
+/** \brief Templated BlinkM type
   */
 
 #include <string>

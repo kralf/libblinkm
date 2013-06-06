@@ -21,8 +21,7 @@
 #ifndef BLINKM_EXCEPTION_H
 #define BLINKM_EXCEPTION_H
 
-/** \file exception.h
-  * \brief BlinkM exception
+/** \brief BlinkM exception
   */
 
 #include <stdexcept>

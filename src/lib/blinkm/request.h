@@ -21,8 +21,7 @@
 #ifndef BLINKM_REQUEST_H
 #define BLINKM_REQUEST_H
 
-/** \file request.h
-  * \brief General BlinkM request
+/** \brief General BlinkM request
   */
 
 #include "base/exception.h"

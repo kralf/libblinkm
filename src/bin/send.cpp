@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
       return 0;
     }
 
-//     device.connect();
+    device.connect();
 
     Pointer<Request> request = device.getProtocol().createRequest(
       application[1].getValue());
@@ -65,8 +65,6 @@ int main(int argc, char **argv) {
     }
     else
       std::cin >> *request;
-
-    return 0;
 
     device.send(*request);
 

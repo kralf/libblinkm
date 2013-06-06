@@ -21,8 +21,7 @@
 #ifndef BLINKM_GETCOLOR_H
 #define BLINKM_GETCOLOR_H
 
-/** \file getcolor.h
-  * \brief BlinkM get color request
+/** \brief BlinkM get color request
   */
 
 #include "color/rgb.h"

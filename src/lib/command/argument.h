@@ -21,8 +21,7 @@
 #ifndef BLINKM_COMMAND_ARGUMENT_H
 #define BLINKM_COMMAND_ARGUMENT_H
 
-/** \file argument.h
-  * \brief BlinkM commandline argument
+/** \brief BlinkM commandline argument
   */
 
 #include "base/object.h"

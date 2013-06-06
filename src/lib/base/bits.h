@@ -21,8 +21,7 @@
 #ifndef BLINKM_BITS_H
 #define BLINKM_BITS_H
 
-/** \file bits.h
-  * \brief BlinkM bits operations
+/** \brief BlinkM bits operations
   */
 
 #include <iostream>
