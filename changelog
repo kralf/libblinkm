@@ -1,3 +1,9 @@
+libblinkm (0.1-5) lucid; urgency=low
+
+  * Added missing pkg-config build dependency
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Fri, 07 Jun 2013 11:41:00 +0100
+
 libblinkm (0.1-4) lucid; urgency=low
 
   * Changed project summary
