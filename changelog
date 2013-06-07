@@ -1,3 +1,9 @@
+libblinkm (0.1-6) lucid; urgency=low
+
+  * Fixed lucid distribution macro in top-level CMakeLists.txt
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Fri, 07 Jun 2013 16:40:00 +0100
+
 libblinkm (0.1-5) lucid; urgency=low
 
   * Added missing pkg-config build dependency
