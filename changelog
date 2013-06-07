@@ -1,3 +1,9 @@
+libblinkm (0.1-4) lucid; urgency=low
+
+  * Changed project summary
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Fri, 07 Jun 2013 08:23:00 +0100
+
 libblinkm (0.1-3) lucid; urgency=low
 
   * Completed standard protocol requests

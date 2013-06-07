@@ -6,7 +6,7 @@ remake_project(
   libblinkm
   VERSION 0.1
   RELEASE alpha
-  SUMMARY "Driver library for BlinkM smart LED device."
+  SUMMARY "Driver library for BlinkM smart LED devices."
   AUTHOR "Ralf Kaestner"
   CONTACT "ralf.kaestner@gmail.com"
   HOME "http://github.com/kralf/libblinkm"
