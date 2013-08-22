@@ -26,6 +26,8 @@
 #include <errno.h>
 #include <string.h>
 
+#include "smbus/smbus.h"
+
 #include "adapter.h"
 
 /*****************************************************************************/
@@ -164,17 +166,15 @@ bool BlinkM::I2c::Adapter::isOpen() const {
 
 void BlinkM::I2c::Adapter::send(const std::vector<unsigned char>& data) {
   if (handle) {
-    int i = 0;
-
-    while (i < data.size()) {
-      ssize_t result;
-      while ((result = ::write(handle, &data[i], data.size()-i)) == 0);
-
-      if ((result < 0) && (errno != EWOULDBLOCK))
-        throw SendError(address, errno);
-      else if (result > 0)
-        i += result;
+    for (int i = 0; i < data.size(); ++i) {
+      result = i2c_smbus_write_byte(handle, data[i]);
+      
+      if (result < 0)
+        break;
     }
+
+    if (result < 0)
+      throw SendError(address, errno);
   }
   else
     throw OperationError();
@@ -199,14 +199,19 @@ void BlinkM::I2c::Adapter::receive(std::vector<unsigned char>& data) {
         throw ReceiveTimeout(address);
       else if (error < 0)
         throw ReceiveError(address, errno);
-
-      ssize_t result;
-      result = ::read(handle, &data[i], data.size()-i);
-
-      if ((result < 0) && (result != EWOULDBLOCK))
+      
+      ssize_t result = 0;
+      for (int i = 0; i < data.size(); ++i) {
+        result = i2c_smbus_read_byte(handle);
+        
+        if (result >= 0)
+          data[i] = result;
+        else
+          break;
+      }
+      
+      if (result < 0)
         throw ReceiveError(address, errno);
-      else if (result > 0)
-        i += result;
     }
   }
   else
