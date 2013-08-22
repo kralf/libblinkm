@@ -69,6 +69,7 @@ namespace BlinkM {
         /** Construct an I2C adapter send error
           */
         SendError(const std::string& address, int error);
+        SendError(const std::string& address, const std::string& error);
       };
 
       class ReceiveTimeout :
@@ -85,11 +86,13 @@ namespace BlinkM {
         /** Construct an I2C adapter receive error
           */
         ReceiveError(const std::string& address, int error);
+        ReceiveError(const std::string& address, const std::string& error);
       };
 
       /** Construct a BlinkM I2C adapter
         */
-      Adapter(const std::string& address = "", double timeout = 1e-2);
+      Adapter(const std::string& address = "", size_t maxRetries = 3,
+        double timeout = 1e-2);
       Adapter(const Adapter& src);
 
       /** Destroy a BlinkM I2C adapter
@@ -100,6 +103,10 @@ namespace BlinkM {
         */
       void setAddress(const std::string& address);
       const std::string& getAddress() const;
+      /** Access the maximum number of retries of the I2C adapter
+        */
+      void setMaxRetries(size_t maxRetries);
+      size_t getMaxRetries() const;
       /** Access the timeout of the I2C adapter
         */
       void setTimeout(double timeout);
@@ -127,6 +134,7 @@ namespace BlinkM {
       void receive(std::vector<unsigned char>& data);
     protected:
       std::string address;
+      size_t maxRetries;
       double timeout;
 
       int handle;

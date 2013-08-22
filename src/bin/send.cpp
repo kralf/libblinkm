@@ -38,6 +38,8 @@ int main(int argc, char **argv) {
   application[2].setGreedy(true);
   application["address"] = Command::Argument(
     "I2C address of connected device", "ADDRESS", "0");
+  application["max-retries"] = Command::Argument(
+    "Maximum number of retries", "NUM", "3");
   application["timeout"] = Command::Argument(
     "Request timeout in ms", "TIMEOUT", "10");
   application["list-requests"] = Command::Argument(
@@ -47,6 +49,8 @@ int main(int argc, char **argv) {
     Device device(application["address"].getValue<unsigned char>());
 
     device.getAdapter().setAddress(application[0].getValue());
+    device.getAdapter().setMaxRetries(
+      application["max-retries"].getValue<size_t>());
     device.getAdapter().setTimeout(
       application["timeout"].getValue<size_t>()*1e-3);
 

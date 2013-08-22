@@ -51,6 +51,12 @@ BlinkM::I2c::Adapter::SendError::SendError(const std::string& address,
     strerror(error)) {
 }
 
+BlinkM::I2c::Adapter::SendError::SendError(const std::string& address,
+    const std::string& error) :
+  Exception("Send failed on I2C adapter %s: %s", address.c_str(),
+    error.c_str()) {
+}
+
 BlinkM::I2c::Adapter::ReceiveTimeout::ReceiveTimeout(const std::string&
     address) :
   Exception("Receive timeout on I2C adapter %s", address.c_str()) {
@@ -62,8 +68,16 @@ BlinkM::I2c::Adapter::ReceiveError::ReceiveError(const std::string&
     strerror(error)) {
 }
 
-BlinkM::I2c::Adapter::Adapter(const std::string& address, double timeout) :
+BlinkM::I2c::Adapter::ReceiveError::ReceiveError(const std::string&
+    address, const std::string& error) :
+  Exception("Receive failed on I2C adapter %s: %s", address.c_str(),
+    error.c_str()) {
+}
+
+BlinkM::I2c::Adapter::Adapter(const std::string& address, size_t maxRetries,
+    double timeout) :
   address(address),
+  maxRetries(maxRetries),
   timeout(timeout),
   handle(0),
   slave(0) {
@@ -73,6 +87,7 @@ BlinkM::I2c::Adapter::Adapter(const std::string& address, double timeout) :
 
 BlinkM::I2c::Adapter::Adapter(const Adapter& src) :
   address(src.address),
+  maxRetries(src.maxRetries),
   timeout(src.timeout),
   handle(0),
   slave(0) {
@@ -101,6 +116,14 @@ const std::string& BlinkM::I2c::Adapter::getAddress() const {
   return address;
 }
 
+void BlinkM::I2c::Adapter::setMaxRetries(size_t maxRetries) {
+  this->maxRetries = maxRetries;
+}
+
+size_t BlinkM::I2c::Adapter::getMaxRetries() const {
+  return maxRetries;
+}
+
 void BlinkM::I2c::Adapter::setTimeout(double timeout) {
   this->timeout = timeout;
 }
@@ -119,6 +142,7 @@ BlinkM::I2c::Adapter& BlinkM::I2c::Adapter::operator=(const Adapter&
     close();
 
   address = src.address;
+  maxRetries = src.maxRetries;
   timeout = src.timeout;
 
   if (src.handle)
@@ -164,17 +188,27 @@ bool BlinkM::I2c::Adapter::isOpen() const {
 
 void BlinkM::I2c::Adapter::send(const std::vector<unsigned char>& data) {
   if (handle) {
-    int i = 0;
+    ssize_t result;
+    
+    for (int r = 0; r < maxRetries; ++r) {
+      int i = 0;
+      
+      while (i < data.size()) {
+        while ((result = ::write(handle, &data[i], data.size()-i)) == 0);
 
-    while (i < data.size()) {
-      ssize_t result;
-      while ((result = ::write(handle, &data[i], data.size()-i)) == 0);
-
-      if ((result < 0) && (errno != EWOULDBLOCK))
-        throw SendError(address, errno);
-      else if (result > 0)
-        i += result;
+        if (result < 0) {
+          if (errno == EIO)
+            break;
+          else if (errno != EWOULDBLOCK)
+            throw SendError(address, errno);
+        }
+        else
+          i += result;
+      }
     }
+    
+    if (errno == EIO)
+      throw SendError(address, errno);
   }
   else
     throw OperationError();

@@ -56,7 +56,7 @@ BlinkM::ScriptLine BlinkM::WriteScriptLine::getLine() const {
     typeName);
 
   std::vector<unsigned char> arguments(request->getNumArguments());
-  std::copy(outputData.begin()+1, outputData.begin()+arguments.size()+1,
+  std::copy(outputData.begin()+5, outputData.begin()+arguments.size()+5,
     arguments.begin());
   request->setArguments(arguments);
 
