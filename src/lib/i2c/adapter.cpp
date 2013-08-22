@@ -166,6 +166,7 @@ bool BlinkM::I2c::Adapter::isOpen() const {
 
 void BlinkM::I2c::Adapter::send(const std::vector<unsigned char>& data) {
   if (handle) {
+    ssize_t result = 0;
     for (int i = 0; i < data.size(); ++i) {
       result = i2c_smbus_write_byte(handle, data[i]);
       

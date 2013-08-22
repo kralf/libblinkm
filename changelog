@@ -1,3 +1,9 @@
+libblinkm (0.1-8) lucid; urgency=low
+
+  * Syntax error fix
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Thu, 22 Aug 2013 15:54:00 +0100
+
 libblinkm (0.1-7) lucid; urgency=low
 
   * First test using SMBus communication instead of character device
