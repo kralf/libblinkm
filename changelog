@@ -1,3 +1,10 @@
+libblinkm (0.1-9) lucid; urgency=low
+
+  * Fixed bug in i2c/adapter.cpp which would cause the trusty build to
+    fail (order of header inclusion leads to NULL being undefined)
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Thu, 25 Sep 2014 17:20:00 +0100
+
 libblinkm (0.1-8) lucid; urgency=low
 
   * Release distribution for Ubuntu Trusty Tahr
