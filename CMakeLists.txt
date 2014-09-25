@@ -51,3 +51,10 @@ remake_distribute_deb(
   DEPENDS remake libi2c-dev pkg-config doxygen
   PASS CMAKE_BUILD_TYPE LIBBLINKM_GIT_REVISION
 )
+remake_distribute_deb(
+  DISTRIBUTION trusty
+  SECTION libs
+  UPLOAD ppa:kralf/asl
+  DEPENDS remake libi2c-dev pkg-config doxygen
+  PASS CMAKE_BUILD_TYPE LIBBLINKM_GIT_REVISION
+)

@@ -1,3 +1,9 @@
+libblinkm (0.1-8) lucid; urgency=low
+
+  * Release distribution for Ubuntu Trusty Tahr
+
+ -- Ralf Kaestner <ralf.kaestner@gmail.com>  Thu, 25 Sep 2014 17:06:00 +0100
+
 libblinkm (0.1-7) lucid; urgency=low
 
   * Added maximum retries to Adapter in order to be more tolerant about
